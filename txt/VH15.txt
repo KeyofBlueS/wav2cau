@@ -1,0 +1,3 @@
+10;Isla Sorna.
+16;Costa Rica lay to the east, a quiet neighbor.
+22;To the west, open water and the shipping lanes of the Pacific.

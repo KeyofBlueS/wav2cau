@@ -1,0 +1,3 @@
+21;Site B was fully centralized and computer-controlled.
+24;The same design that became the Achilles heel of Jurassic Park.
+12;Everything gates off that computer.

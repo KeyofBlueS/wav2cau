@@ -1,0 +1,2 @@
+18;As we left we vandalized our own locking mechanisms.
+15;InGen tolerates no trespassers.
