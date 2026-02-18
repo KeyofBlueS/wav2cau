@@ -1,0 +1,3 @@
+10;He must have been scared.
+17;He was wounded, he crawled in here, maybe losing blood.
+10;I guess he thought it was safe.

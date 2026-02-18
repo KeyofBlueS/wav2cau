@@ -1,0 +1,2 @@
+12;How did they get their electricity?
+11;They must have had a generator.
