@@ -1,0 +1,4 @@
+25;The pylons run for kilometers, one every hundred meters or so.
+10;I built them to last.
+07;Running east from the plant,
+19;they climbed the valley before descending south into the plains.

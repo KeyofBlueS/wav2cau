@@ -1,0 +1,3 @@
+21;Hunting dinosaurs is quite a tricky business.
+10;I recommend helicopters...
+06;...if you've got them.

@@ -1,0 +1,4 @@
+23;A lost world is a sort of scientific myth.
+13;An evolutionary scenario in which...
+15;...an ecosystem is isolated and preserved.
+33;The rest of the world changes, leaving a tiny, fragile pocket where ancient species survive.

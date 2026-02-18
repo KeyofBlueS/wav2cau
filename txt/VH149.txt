@@ -1,0 +1,4 @@
+17;American-made tranquilizer darts.
+26;The effect changes with the target's body mass, temperament, and mood.
+08;I believe the phrase is...
+09;...'Results may vary.' 

@@ -1,0 +1,5 @@
+11;Tyrannosaurus Rex.
+09;Tyrant lizard,
+14;they reigned for 25 million years.
+09;We grew 7 of them...
+14;..the 7 rulers of the island.

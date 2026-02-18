@@ -1,0 +1,4 @@
+06;Left to itself,
+10;the facility reverts to minimal power...
+15;...chiefly battery-powered security systems.
+15;It can sustain itself almost indefinitely.
