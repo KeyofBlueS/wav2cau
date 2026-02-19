@@ -1,1 +1,2 @@
-No Caption data.
+20;The main select board is temporarily unattended.
+10;Please contact your supervisor.
