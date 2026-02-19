@@ -39,7 +39,7 @@ Options:
   -w, --wavfile <wavfile.wav>           Specify the input wav file path and name.
   -o, --caufile <caufile.cau>           Specify the output cau file path and name.
   -q, --quiet                           Disable output messages.
-  -d, --debug					                  Enable output debug messages." << std::endl;
+  -d, --debug					                  Enable output debug messages.
   -h, --help                            Show this help message and exit.
 ```
 
