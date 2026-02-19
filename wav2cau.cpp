@@ -351,8 +351,8 @@ void printHelpMessage() {
 	std::cout << "Usage: wav2cau <wavfile.wav> [options]" << std::endl;
 	std::cout << std::endl;
 	std::cout << "Options:" << std::endl;
-	std::cout << "  -w, --wavfile <wavfile.wav>			Specify the input wav file path and name." << std::endl;
 	std::cout << "  -c, --captionfile <captionfile.txt>		Specify the input caption ASCII txt file path and name." << std::endl;
+	std::cout << "  -w, --wavfile <wavfile.wav>			Specify the input wav file path and name." << std::endl;
 	std::cout << "  -o, --caufile <caufile.cau>			Specify the output cau file path and name." << std::endl;
 	std::cout << "  -q, --quiet					Disable output messages." << std::endl;
 	std::cout << "  -d, --debug					Enable output debug messages." << std::endl;
@@ -375,8 +375,8 @@ int main(int argc, char* argv[]){
 
 	// Define the long options for getopt
 	struct option long_options[] = {
-		{"wavfile", required_argument, nullptr, 'w'},
 		{"captionfile", required_argument, nullptr, 'c'},
+		{"wavfile", required_argument, nullptr, 'w'},
 		{"caufile", required_argument, nullptr, 'o'},
 		{"quiet", no_argument, nullptr, 'q'},
 		{"debug", no_argument, nullptr, 'd'},
@@ -387,13 +387,13 @@ int main(int argc, char* argv[]){
 	// Parse command-line arguments
 	int opt;
 	int option_index = 0;
-	while ((opt = getopt_long(argc, argv, "w:c:o:qdh", long_options, &option_index)) != -1) {
+	while ((opt = getopt_long(argc, argv, "c:w:o:qdh", long_options, &option_index)) != -1) {
 		switch (opt) {
-			case 'w':
-				wavFile = optarg;
-				break;
 			case 'c':
 				captionFile = optarg;
+				break;
+			case 'w':
+				wavFile = optarg;
 				break;
 			case 'o':
 				cauFile = optarg;
@@ -477,7 +477,7 @@ int main(int argc, char* argv[]){
 
 		bool timingsFromTxt = false;
 
-		// 1Try extracting timings from caption file
+		// Try extracting timings from caption file
 		if (!captions.empty()) {
 			timings = extractCaptionTimingsFromTxt(captions, debug);
 
