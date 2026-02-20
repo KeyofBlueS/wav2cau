@@ -1,2 +1,3 @@
-40;She would not answer me at first. I asker her again.
+28;She would not answer me at first.
+12;I asker her again.
 28;A diary. This is really old. 1951.
