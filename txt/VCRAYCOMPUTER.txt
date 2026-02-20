@@ -1,1 +1,5 @@
-No Caption data.
+11;Activating systems.
+11;Satellite uplink...
+07;Connected.
+07;Local transmitter down.
+23;Attempting connection to mountain top facility.
