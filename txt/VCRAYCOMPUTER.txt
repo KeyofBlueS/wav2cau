@@ -1,5 +1,9 @@
 11;Activating systems.
+22;Power production, 41% capacity.
+32;Security, specimen holding area is now unlocked. Predator warning.
+31;Biolabs, sterility compromised. Equipment missing or disconnected.
+31;Genetic database, four of five file servers online and verified.
 11;Satellite uplink...
 07;Connected.
 07;Local transmitter down.
-23;Attempting connection to mountain top facility.
+19;Attempting connection to mountain top facility.
