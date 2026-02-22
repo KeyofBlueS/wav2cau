@@ -13,7 +13,7 @@
 18;Sorry ma'am, hold tight. Are you in any danger?
 17;I'm fine, I'm fine, just get me out of here.
 17;Hold your position, ma'am. We've got people in the area.
-14; We're dispatching a helicopter to your current location.
+14;We're dispatching a helicopter to your current location.
 06;Thank you.
 14;I mean...Roger that...
 15;...over and out...
