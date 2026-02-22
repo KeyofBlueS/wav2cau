@@ -1,0 +1,4 @@
+20;Welcome to Site B, an InGen Research Facility.
+20;For centuries mankind has wondered about the dinosaurs,
+20;the largest land animals ever to have lived.
+20;Now thanks to breakthrough technologies...

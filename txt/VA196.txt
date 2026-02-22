@@ -1,0 +1,2 @@
+06;Okay.
+11;Weight corresponds to capacitance.

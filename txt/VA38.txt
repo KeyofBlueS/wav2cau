@@ -1,0 +1,3 @@
+10;Sun's in the west.
+07;I think.
+15;Which means that mountain I saw from the beach must be north. 
