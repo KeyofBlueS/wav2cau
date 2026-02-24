@@ -1,2 +1,1 @@
 14;Looks like it ran off the trail for some reason.
-42;
