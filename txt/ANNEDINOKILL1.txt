@@ -1,3 +1,4 @@
-09;I'm fine. I'm fine.
-10;Oh god!
-12;Who'd have thought that I could do that?
+06;
+12;I'm fine. I'm fine.
+13;Oh god!
+18;Who'd have thought that I could do that?
