@@ -2,5 +2,5 @@
 16;Hunting dinosaurs on strange island.
 12;Little chance of escape...
 15;...um...weather fine.
-07;Well, more news later.
+10;Well, more news later.
 08;Anne.
