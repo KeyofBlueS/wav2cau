@@ -1,6 +1,9 @@
 13;Oh, there isn't much to tell.
 06;You know...
-25;...I went to the party. I wore the little black dress.
+27;...I went to the party. I wore the little black dress.
 13;It was beautiful.
-23;I guess I didn't want to be alone, or something. He...
-39;...it wasn't what I wanted. I guess it doesn't matter now. I'm not going back.
+26;I guess I didn't want to be alone, or something. He...
+12;...it wasn't what I wanted.
+09;
+12;I guess it doesn't matter now.
+12;I'm not going back.
