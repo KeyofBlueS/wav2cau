@@ -1,6 +1,10 @@
 10;November, 1983.
 18;Test fertilization of an artificial ovum.
-19;My hands shook as I held the tiny eye dropper.
-17;One drop, two drops...
+03;
+16;My hands shook as I held the tiny eye dropper.
+03;
+09;One drop
+07;two drops...
+05;
 08;...There!
-12;The genie was out of the bottle.
+11;The genie was out of the bottle.
