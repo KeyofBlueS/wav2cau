@@ -1,4 +1,4 @@
 19;I stepped out of the jeep and stretched my legs.
 25;The two guards attended to the wheel, and just for an instant I stood alone...
 19;...unprotected in the Jurassic wilderness.
-25;I felt the air current around me, heard a single tree rustle.
+32;I felt the air current around me, heard a single tree rustle.
