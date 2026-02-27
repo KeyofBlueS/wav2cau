@@ -1,3 +1,3 @@
 10;A tank of greenish water,
 27;tinted by an algae-killing chemical, circulated through the massive cooling tower.
-19;This reservoir was filled from a pump in the valley, some ways away.
+24;This reservoir was filled from a pump in the valley, some ways away.
