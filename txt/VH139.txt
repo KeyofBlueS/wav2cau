@@ -1,9 +1,10 @@
 16;
 14;On October the 3rd, 1989,
-27;I sat on a wooden bench in the waiting room in Washington, DC.
+29;I sat on a wooden bench in the waiting room in Washington, DC.
 25;A government panel put me on the stand.
+05;
 14;As my name was read out,
 15;the sessionroom went silent.
-18;I walked up the aisle towards the stand.
-12;I was being called to account.
-19;But I had no clear explanation to give.
+20;I walked up the aisle towards the stand.
+15;I was being called to account.
+23;But I had no clear explanation to give.
