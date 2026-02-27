@@ -1,4 +1,4 @@
 10;As Nedry typed,
 13;the world seemed to hold its breath.
-38;For a moment we stood at the turning point between two great planetary eras...
-33;the million-year reign of man, and the age of the dinosaurs.
+40;For a moment we stood at the turning point between two great planetary eras...
+42;the million-year reign of man, and the age of the dinosaurs.
