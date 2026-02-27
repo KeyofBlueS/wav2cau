@@ -1,4 +1,5 @@
 10;As I write this,
-22; tiles are cracking, smeared with windblown dirt and animal tracks.
-20;Thick tree roots are pushing up through the asphalt.
+22;tiles are cracking, smeared with windblown dirt and animal tracks.
+19;Thick tree roots are pushing up through the asphalt.
+06;
 32;The island settles itself, beginning to erase all trace of us...
