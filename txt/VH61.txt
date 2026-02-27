@@ -1,3 +1,4 @@
 15;The jungle canopy hung over us.
-19;There was an utter silence...
-14;Far away I could hear a jeep engine idling.
+10;There was an utter silence...
+10;
+16;Far away I could hear a jeep engine idling.
