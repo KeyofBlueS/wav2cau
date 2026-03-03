@@ -18,6 +18,7 @@
 #include <sstream>
 #include <cctype>
 #include <getopt.h>
+#include <unordered_map>
 
 // WAV Header Info
 struct WAVHeaderInfo {
@@ -274,12 +275,148 @@ void writeCAU(const std::string &cauPath,
     patch.close();
 }
 
+enum class CaptionEncoding {
+    CP1252,
+    CP1251
+};
+
+// Windows-1252 special mapping table (Unicode → CP1252 byte)
+static const std::unordered_map<uint32_t, uint8_t> unicodeToCP1252 = {
+    {0x20AC, 0x80}, // €
+    {0x201A, 0x82}, // ‚
+    {0x0192, 0x83}, // ƒ
+    {0x201E, 0x84}, // „
+    {0x2026, 0x85}, // …
+    {0x2020, 0x86}, // †
+    {0x2021, 0x87}, // ‡
+    {0x02C6, 0x88}, // ˆ
+    {0x2030, 0x89}, // ‰
+    {0x0160, 0x8A}, // Š
+    {0x2039, 0x8B}, // ‹
+    {0x0152, 0x8C}, // Œ
+    {0x017D, 0x8E}, // Ž
+    {0x2018, 0x91}, // ‘
+    {0x2019, 0x92}, // ’
+    {0x201C, 0x93}, // “
+    {0x201D, 0x94}, // ”
+    {0x2022, 0x95}, // •
+    {0x2013, 0x96}, // –
+    {0x2014, 0x97}, // —
+    {0x02DC, 0x98}, // ˜
+    {0x2122, 0x99}, // ™
+    {0x0161, 0x9A}, // š
+    {0x203A, 0x9B}, // ›
+    {0x0153, 0x9C}, // œ
+    {0x017E, 0x9E}, // ž
+    {0x0178, 0x9F}  // Ÿ
+};
+
+// Unicode → CP1251
+static const std::unordered_map<uint32_t, uint8_t> unicodeToCP1251 = {
+
+    // Uppercase А–Я
+    {0x0410, 0xC0},{0x0411, 0xC1},{0x0412, 0xC2},{0x0413, 0xC3},
+    {0x0414, 0xC4},{0x0415, 0xC5},{0x0416, 0xC6},{0x0417, 0xC7},
+    {0x0418, 0xC8},{0x0419, 0xC9},{0x041A, 0xCA},{0x041B, 0xCB},
+    {0x041C, 0xCC},{0x041D, 0xCD},{0x041E, 0xCE},{0x041F, 0xCF},
+    {0x0420, 0xD0},{0x0421, 0xD1},{0x0422, 0xD2},{0x0423, 0xD3},
+    {0x0424, 0xD4},{0x0425, 0xD5},{0x0426, 0xD6},{0x0427, 0xD7},
+    {0x0428, 0xD8},{0x0429, 0xD9},{0x042A, 0xDA},{0x042B, 0xDB},
+    {0x042C, 0xDC},{0x042D, 0xDD},{0x042E, 0xDE},{0x042F, 0xDF},
+
+    // Lowercase а–я
+    {0x0430, 0xE0},{0x0431, 0xE1},{0x0432, 0xE2},{0x0433, 0xE3},
+    {0x0434, 0xE4},{0x0435, 0xE5},{0x0436, 0xE6},{0x0437, 0xE7},
+    {0x0438, 0xE8},{0x0439, 0xE9},{0x043A, 0xEA},{0x043B, 0xEB},
+    {0x043C, 0xEC},{0x043D, 0xED},{0x043E, 0xEE},{0x043F, 0xEF},
+    {0x0440, 0xF0},{0x0441, 0xF1},{0x0442, 0xF2},{0x0443, 0xF3},
+    {0x0444, 0xF4},{0x0445, 0xF5},{0x0446, 0xF6},{0x0447, 0xF7},
+    {0x0448, 0xF8},{0x0449, 0xF9},{0x044A, 0xFA},{0x044B, 0xFB},
+    {0x044C, 0xFC},{0x044D, 0xFD},{0x044E, 0xFE},{0x044F, 0xFF},
+
+    // Ё ё
+    {0x0401, 0xA8},
+    {0x0451, 0xB8}
+};
+
+// Decode one UTF-8 codepoint
+static bool decodeUtf8(const std::string& s, size_t& i, uint32_t& codepoint)
+{
+    unsigned char c = static_cast<unsigned char>(s[i]);
+
+    if (c < 0x80) {
+        codepoint = c;
+        i += 1;
+        return true;
+    }
+    else if ((c & 0xE0) == 0xC0 && i + 1 < s.size()) {
+        codepoint = ((c & 0x1F) << 6) |
+                    (static_cast<unsigned char>(s[i+1]) & 0x3F);
+        i += 2;
+        return true;
+    }
+    else if ((c & 0xF0) == 0xE0 && i + 2 < s.size()) {
+        codepoint = ((c & 0x0F) << 12) |
+                    ((static_cast<unsigned char>(s[i+1]) & 0x3F) << 6) |
+                    (static_cast<unsigned char>(s[i+2]) & 0x3F);
+        i += 3;
+        return true;
+    }
+
+    // Unsupported sequence
+    i += 1;
+    codepoint = '?';
+    return false;
+}
+
+std::vector<char> utf8ToLegacy(const std::vector<char>& input,
+                               CaptionEncoding encoding)
+{
+    std::vector<char> output;
+    std::string utf8(input.begin(), input.end());
+
+    for (size_t i = 0; i < utf8.size(); )
+    {
+        uint32_t codepoint = 0;
+        decodeUtf8(utf8, i, codepoint);
+
+        // ASCII always preserved
+        if (codepoint <= 0x7F) {
+            output.push_back(static_cast<char>(codepoint));
+            continue;
+        }
+
+        // Direct Latin-1 range (for CP1252 only)
+        if (encoding == CaptionEncoding::CP1252 &&
+            codepoint >= 0xA0 && codepoint <= 0xFF)
+        {
+            output.push_back(static_cast<char>(codepoint));
+            continue;
+        }
+
+        const std::unordered_map<uint32_t,uint8_t>* table = nullptr;
+
+        if (encoding == CaptionEncoding::CP1252)
+            table = &unicodeToCP1252;
+        else
+            table = &unicodeToCP1251;
+
+        auto it = table->find(codepoint);
+        if (it != table->end())
+            output.push_back(static_cast<char>(it->second));
+        else
+            output.push_back('?');
+    }
+
+    return output;
+}
+
 // Function to validate the caption TXT file (strict ASCII text validation)
 bool isValidAsciiTextFile(const std::string& filename) {
 	std::ifstream file(filename, std::ios::binary);
 
 	if (!file) {
-		std::cerr << "Error: Cannot open file." << std::endl;
+		std::cerr << "* ERROR: Cannot open caption txt file." << std::endl;
 		return false;
 	}
 
@@ -318,7 +455,7 @@ bool isValidWav(const std::string& filename) {
 	std::ifstream file(filename, std::ios::binary);
 	
 	if (!file) {
-		std::cerr << "Error: Cannot open file." << std::endl;
+		std::cerr << "* ERROR: Cannot open WAV file." << std::endl;
 		return false;
 	}
 
@@ -346,13 +483,16 @@ bool isValidWav(const std::string& filename) {
 // Function to print the help message
 void printHelpMessage() {
 	std::cout << std::endl;
-	std::cout << "Trespasser wav2cau Converter v0.0.1" << std::endl;
+	std::cout << "Trespasser wav2cau Converter v0.1.0" << std::endl;
 	std::cout << std::endl;
 	std::cout << "Usage: wav2cau <wavfile.wav> [options]" << std::endl;
 	std::cout << std::endl;
 	std::cout << "Options:" << std::endl;
-	std::cout << "  -c, --captionfile <captionfile.txt>		Specify the input caption ASCII txt file path and name." << std::endl;
+	std::cout << "  -c, --captionfile <captionfile.txt>		Specify the input caption txt file path and name." << std::endl;
 	std::cout << "  -w, --wavfile <wavfile.wav>			Specify the input wav file path and name." << std::endl;
+	std::cout << "  -e, --encoding <encoding>			Specify the caption's encoding. Supported encodings are:" << std::endl;
+	std::cout << "							cp1252 (Western Europe - default)." << std::endl;
+	std::cout << "							cp1251 (Cyrillic)." << std::endl;
 	std::cout << "  -o, --caufile <caufile.cau>			Specify the output cau file path and name." << std::endl;
 	std::cout << "  -q, --quiet					Disable output messages." << std::endl;
 	std::cout << "  -d, --debug					Enable output debug messages." << std::endl;
@@ -372,11 +512,13 @@ int main(int argc, char* argv[]){
 	bool quiet = false;
 	bool debug=false;
 	bool argError = false;
+	CaptionEncoding encoding = CaptionEncoding::CP1252;
 
 	// Define the long options for getopt
 	struct option long_options[] = {
 		{"captionfile", required_argument, nullptr, 'c'},
 		{"wavfile", required_argument, nullptr, 'w'},
+		{"encoding", required_argument, nullptr, 'e'},
 		{"caufile", required_argument, nullptr, 'o'},
 		{"quiet", no_argument, nullptr, 'q'},
 		{"debug", no_argument, nullptr, 'd'},
@@ -387,7 +529,7 @@ int main(int argc, char* argv[]){
 	// Parse command-line arguments
 	int opt;
 	int option_index = 0;
-	while ((opt = getopt_long(argc, argv, "c:w:o:qdh", long_options, &option_index)) != -1) {
+	while ((opt = getopt_long(argc, argv, "c:w:e:o:qdh", long_options, &option_index)) != -1) {
 		switch (opt) {
 			case 'c':
 				captionFile = optarg;
@@ -395,6 +537,21 @@ int main(int argc, char* argv[]){
 			case 'w':
 				wavFile = optarg;
 				break;
+			case 'e':
+			{
+				std::string enc = optarg;
+				if (enc == "cp1251")
+					encoding = CaptionEncoding::CP1251;
+				else if (enc == "cp1252")
+					encoding = CaptionEncoding::CP1252;
+				else
+				{
+					std::cerr << "* ERROR: Unsupported encoding: " << enc << std::endl;
+					std::cerr << "  falling back to cp1252" << std::endl;
+					encoding = CaptionEncoding::CP1252;
+				}
+				break;
+			}
 			case 'o':
 				cauFile = optarg;
 				break;
@@ -434,6 +591,8 @@ int main(int argc, char* argv[]){
 	if (wavFile.empty()) {
 		argError = true;
 		std::cerr << "* ERROR: No input wav file specified." << std::endl;
+		printHelpMessage();
+		return 1;
 	}
 
 	if (!isValidWav(wavFile)) {
@@ -441,12 +600,12 @@ int main(int argc, char* argv[]){
 		std::cerr << "* ERROR: Not a valid WAV file! " << wavFile << std::endl;
 	}
 
-	if (!captionFile.empty()) {
-		if (!isValidAsciiTextFile(captionFile)) {
-			argError = true;
-			std::cerr << "* ERROR: Not a valid ASCII text file!" << captionFile << std::endl;
-		}
-	}
+	//if (!captionFile.empty()) {
+		//if (!isValidAsciiTextFile(captionFile)) {
+			//argError = true;
+			//std::cerr << "* ERROR: Not a valid ASCII text file!" << captionFile << std::endl;
+		//}
+	//}
 
 	if (argError) {
 		printHelpMessage();
@@ -469,15 +628,17 @@ int main(int argc, char* argv[]){
 		WAVHeaderInfo info = readWAVInfo(wavData);
 
 		std::vector<char> captions;
-		if(!captionFile.empty() && std::filesystem::exists(captionFile))
-			captions = readFile(captionFile);
+		if(!captionFile.empty() && std::filesystem::exists(captionFile)) {
+			auto rawCaptions = readFile(captionFile);
+			captions = utf8ToLegacy(rawCaptions, encoding);
+		}
 
 		std::vector<uint8_t> timings;
 		size_t cauLines = 0;
 
 		bool timingsFromTxt = false;
 
-		// Try extracting timings from caption file
+		// 1Try extracting timings from caption file
 		if (!captions.empty()) {
 			timings = extractCaptionTimingsFromTxt(captions, debug);
 
@@ -494,7 +655,7 @@ int main(int argc, char* argv[]){
 		if (!quiet) std::cout<<"Exported CAU: "<< cauFile << std::endl;
 	}
 	catch(const std::exception &e){
-		std::cerr<<"Error: "<< e.what() << std::endl;
+		std::cerr<<"* ERROR: "<< e.what() << std::endl;
 		return 1;
 	}
 
