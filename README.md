@@ -8,10 +8,7 @@ In the game, each voice line and its corresponding subtitle are packaged togethe
 The wav2cau tool was developed to simplify subtitle translation. It allows you to generate new .cau files that contain both captions and audio.
 
 
-In the txt folder of this repository, you will find caption files. You may edit the text as needed, but make sure to follow these rules:
-
-- Keep the numeric value at the beginning of each line. This decimal number indicates the caption's timing.
-- Ensure that all text uses ASCII characters only.
+In the txt folder of this repository, you will find caption files. You may edit the text as needed, but make sure to keep the numeric value at the beginning of each line. This decimal number indicates the caption's timing.
 
 
 # How the .txt Caption Files Work
@@ -27,7 +24,6 @@ Each caption file follows a simple structure:
 ```
 - The timing must be within the range 0-255.
 - The timing value is separated from the caption text by a semicolon (;).
-- Caption text must use ASCII characters only.
 - You may insert empty lines between captions (including at the very beginning) to create pauses. Example:
 ```
 10;
@@ -53,6 +49,7 @@ For example, I only used one to create an initial pause in the VRADIO captions.
 However, other in-game dialogue may still need timing adjustments.
 
 
+
 # Build Instructions:
 
 To compile this tool, use the following command:
@@ -73,8 +70,11 @@ $ ./wav2cau -c <input_caption_file> -w <input_wav_file> -o <output_cau_file> [OP
 ```
 Options:
 
-  -c, --captionfile <captionfile.txt>   Specify the input caption ASCII txt file path and name.
+  -c, --captionfile <captionfile.txt>   Specify the input caption txt file path and name.
   -w, --wavfile <wavfile.wav>           Specify the input wav file path and name.
+  -e, --encoding <encoding>             Specify the caption's encoding. Supported encodings are:
+                                          cp1252 (Western Europe - default).
+                                          cp1251 (Cyrillic).
   -o, --caufile <caufile.cau>           Specify the output cau file path and name.
   -q, --quiet                           Disable output messages.
   -d, --debug                           Enable output debug messages.
