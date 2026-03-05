@@ -1,1 +1,2 @@
-07;No battery.
+04;
+05;No battery.
