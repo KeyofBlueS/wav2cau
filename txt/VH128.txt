@@ -1,2 +1,2 @@
-25;She would not answer me at first.
-10;I asker her again.
+27;She would not answer me at first.
+09;I asker her again.

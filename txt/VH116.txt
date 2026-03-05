@@ -1,3 +1,3 @@
-10;Velociraptor.
-21;A small theropod Native to China and Mongolia.
-21;Packhunter, quite vicious, and quite intelligent.
+09;Velociraptor.
+24;A small theropod Native to China and Mongolia.
+22;Packhunter, quite vicious, and quite intelligent.

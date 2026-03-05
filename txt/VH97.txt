@@ -1,2 +1,2 @@
-21;Site B was fully centralized and computer-controlled.
-19;The same design that became the Achilles heel of Jurassic Park.
+22;Site B was fully centralized and computer-controlled.
+23;The same design that became the Achilles heel of Jurassic Park.

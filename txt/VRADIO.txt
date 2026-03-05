@@ -1,19 +1,20 @@
-10;
+11;
 04;Um...
 13;Hello? Hello?
-20;Anyone out there? I need help.
+19;Anyone out there? I need help.
 16;This is the United States Navy, Priority Channel.
 11;Identify yourself or clear the air.
-24;Ah! I mean yes! Yes I'm here! I'm on Site B.
+25;Ah! I mean yes! Yes I'm here! I'm on Site B.
 26;Right, Right we get this alot. Listen, please clear the channel or..
 23;No, I'm not kidding. I'm on Site B. I'm on the dinosaur preserve for God sake.
 15;Be advised, we're triangulating your location...
-16;...and that transmitting of this frequency is a violation...
-19;Ah, sir...this is coming from the top of Mt. Watson.
-18;Sorry ma'am, hold tight. Are you in any danger?
+14;...and that transmitting of this frequency is a violation...
+16;Ah, sir...this is coming from the top of Mt. Watson.
+07;Ah!
+17;Sorry ma'am, hold tight. Are you in any danger?
 17;I'm fine, I'm fine, just get me out of here.
-17;Hold your position, ma'am. We've got people in the area.
+16;Hold your position, ma'am. We've got people in the area.
 14;We're dispatching a helicopter to your current location.
-06;Thank you.
-14;I mean...Roger that...
+05;Thank you.
+16;I mean...Roger that...
 15;...over and out...

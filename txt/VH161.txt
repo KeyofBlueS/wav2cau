@@ -1,2 +1,2 @@
-23;Greenwood carried some sort of electronic device which we're told he built himself,
-24;based on plans he found on the internet.
+17;Greenwood carried some sort of electronic device which we're told
+33;he built himself, based on plans he found on the internet.

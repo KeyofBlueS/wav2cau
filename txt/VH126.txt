@@ -1,6 +1,6 @@
 11;And then...
-26;...it opened up. The code read true.
-24;The barrier of time for an instant,
+27;...it opened up. The code read true.
+25;The barrier of time for an instant,
 12;...opened.
 19;Nedry and I stared into the monitor,
 27;straight back through 65 thousand centuries.

@@ -1,14 +1,14 @@
 21;I met a traveler from an antique land,
-36;who said,"two vast and trunkless legs of stone stand in the desert
+38;who said,"two vast and trunkless legs of stone stand in the desert
 33;Near them, on the sand, Half sunk a shattered visage lies
 32;whose frown and wrinkled lip, and sneer of cold command,
 29;Tell that its sculptor well those passions read, Which yet survive,
-17;stamped on these lifeless things,
+19;stamped on these lifeless things,
 31;The hand that mocked them, and the heart that fed,
-03;
+02;
 27;And on the pedestal, these words appear:
 25;My name is Ozymandias, King of Kings,
-25;Look on my Works, ye Mighty, and despair!
+26;Look on my Works, ye Mighty, and despair!
 18;Nothing beside remains.
-19;Round the decay of that colossal Wreck,
+18;Round the decay of that colossal Wreck,
 42;boundless and bare, The lone and level sands stretch far away."
