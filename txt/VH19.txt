@@ -1,6 +1,6 @@
-09;If we succeeded...
-14;...the InGen technology would be historic.
+08;If we succeeded...
+15;...the InGen technology would be historic.
 16;We were planning to conquer time's power over life,
-18;its power to extinguish and erase.
-12;It would change all of our lives,
-19;as profoundly, as irrevocably as the atomic bomb.
+20;its power to extinguish and erase.
+08;It would change all of our lives,
+24;as profoundly, as irrevocably as the atomic bomb.
