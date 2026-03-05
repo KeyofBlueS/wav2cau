@@ -1,2 +1,2 @@
-13;Wow, must be a mile across.
-10;At least a 6.50 cab ride.
+11;Wow, must be a mile across.
+15;At least a 6.50 cab ride.

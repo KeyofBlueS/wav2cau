@@ -1,2 +1,2 @@
-11;If the computer runs communications,
-15;I've got to see if it's intact, security or not.
+10;If the computer runs communications,
+17;I've got to see if it's intact, security or not.

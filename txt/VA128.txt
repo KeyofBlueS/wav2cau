@@ -1,6 +1,6 @@
-09;Dear Diary.
-16;Hunting dinosaurs on strange island.
-12;Little chance of escape...
+08;Dear Diary.
+17;Hunting dinosaurs on strange island.
+14;Little chance of escape...
 15;...um...weather fine.
-10;Well, more news later.
-08;Anne.
+08;Well, more news later.
+07;Anne.

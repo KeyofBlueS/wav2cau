@@ -1,1 +1,1 @@
-15;Combo lock. Or it takes a card.
+14;Combo lock. Or it takes a card.

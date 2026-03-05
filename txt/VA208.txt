@@ -1,2 +1,2 @@
-07;Okay?
-10;You want to take me on?
+06;Okay?
+11;You want to take me on?

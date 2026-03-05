@@ -1,2 +1,2 @@
-07;Control room.
-08;Looks pretty intact.
+06;Control room.
+07;Looks pretty intact.

@@ -1,2 +1,2 @@
-11;No collars.
-17;I need one of the old ones. One of the ones Hammond made.
+10;No collars.
+19;I need one of the old ones. One of the ones Hammond made.
