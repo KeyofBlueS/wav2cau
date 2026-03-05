@@ -1,2 +1,2 @@
 06;Die!
-10;Why don't you die!?
+09;Why don't you die!?

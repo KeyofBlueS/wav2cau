@@ -1,2 +1,2 @@
-06;Beautiful.
-10;Spanish colonial.
+05;Beautiful.
+08;Spanish colonial.

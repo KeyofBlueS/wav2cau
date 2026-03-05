@@ -1,1 +1,2 @@
-18;It's coffee gold. Slaver gold.
+10;It's coffee gold.
+10;Slaver gold.
